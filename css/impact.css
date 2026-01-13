@@ -1,0 +1,786 @@
+/* ==========================================================================
+   PlowAfrika – Complete Mobile-First CSS (By LitrixGlobal)
+   Last updated structure: January 2026
+   Adjusted for smaller fonts and reduced footer height
+   ========================================================================== */
+
+/* ─────────────────────────────────────────────
+   GLOBAL RESET & VARIABLES
+────────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: #1a1a1a;
+  background: #ffffff;
+}
+
+:root {
+  --fs-body: 0.9375rem; /* 15px */
+  --fs-link: 1rem;       /* 16px */
+  --gap-md: 24px;
+  --gap-sm: 16px;
+  --nav-height: 60px;
+  --btn-pad: 8px 16px;
+  --btn-rad: 8px;
+  --primary: #2e7d32;
+  --primary-d: #1b5e20;
+  --text: #111827;
+  --text-light: #4b5563;
+  --border: #e5e7eb;
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.11);
+}
+
+/* ─────────────────────────────────────────────
+   CONTAINER
+────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ─────────────────────────────────────────────
+   BUTTONS
+────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--btn-pad);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  border-radius: var(--btn-rad);
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  transition: all 0.22s ease;
+}
+
+.btn-primary:hover {
+  background: var(--primary-d);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(46,125,50,0.28);
+}
+
+/* ─────────────────────────────────────────────
+   NAVIGATION
+────────────────────────────────────────────── */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  height: var(--nav-height);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo img {
+  height: 60px;
+  width: auto;
+  transition: height 0.3s ease;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger X animation */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Nav links (mobile hidden initially) */
+.nav-links {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 16px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  padding: 12px 20px;
+  min-width: 180px;
+  list-style: none;
+  z-index: 999;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.22s ease-out;
+  pointer-events: none;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-links.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Triangle arrow for mobile */
+.nav-links.active::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 24px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+
+.nav-links a {
+  display: block;
+  padding: 10px 4px;
+  color: var(--text);
+  font-weight: 500;
+  font-size: var(--fs-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+}
+
+/* CTA always visible on desktop/tablet */
+.nav-cta {
+  display: none;
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE – TABLET & DESKTOP
+────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex !important;
+    flex-direction: row;
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    background: none;
+    box-shadow: none;
+    gap: var(--gap-md);
+  }
+
+  .nav-links a {
+    padding: 8px 12px;
+  }
+
+  .nav-cta {
+    display: block;
+  }
+
+  .logo img {
+    height: 84px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    height: 50px;
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   IMPACT HERO SECTION
+   ────────────────────────────────────────────────────────── */
+
+#impactHero {
+  position: relative;
+  padding: clamp(96px, 20vh, 140px) 16px 72px;
+  text-align: center;
+  color: #ffffff;
+
+  background-image: url("../images/wisconsin.jpg"); /* UPDATE PATH */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  overflow: hidden;
+}
+
+/* White fade overlay from bottom to top */
+#impactHero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.95) 22%,
+    rgba(255, 255, 255, 0.65) 38%,
+    rgba(255, 255, 255, 0.3) 55%,
+    rgba(255, 255, 255, 0) 75%
+  );
+  z-index: 1;
+}
+
+/* Keep content above overlay */
+#impactHero > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Heading */
+#impactHero h1 {
+  display: inline;
+  background-color: #0f172a8c;
+  padding: 0px 30px;
+  border-radius: 20px;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+/* Subheading */
+#impactHero p {
+  background-color: #07381b;
+  padding: 10px 40px;
+  border-radius: 20px;
+  font-size: var(--fs-body);
+  max-width: 56ch;
+  margin: 0 auto var(--gap-md);
+  opacity: 0.95;
+}
+
+/* ──────────────────────────────────────────────────────────
+   IMPACT FEATURE CARDS
+   ────────────────────────────────────────────────────────── */
+
+#impactCard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-sm);
+  margin-top: var(--gap-md);
+}
+
+/* Individual card */
+#impactCard > div {
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--text);
+  padding: 14px;
+  border-radius: var(--card-rad);
+  box-shadow: var(--shadow-sm);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+
+  text-align: center;
+}
+
+/* Icon */
+#impactCard i {
+  font-size: 22px;
+  color: var(--primary);
+}
+
+/* Label */
+#impactCard span {
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
+
+
+
+/* ──────────────────────────────────────────────────────────
+   TABLET & DESKTOP
+   ────────────────────────────────────────────────────────── */
+
+#stats{
+  background-color: #07381b;
+  width: 100%;
+  justify-items: center;
+  align-items: center;
+}
+
+#stats h2{
+  color: #fff;
+}
+#ours{
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 11px;
+  color: #ffffff;
+}
+
+.statNum {
+  justify-items: center;
+  align-items: center;
+  padding: 40px;
+
+}
+
+.statNum h1{
+  color: #fff;
+  font-size: 30px;
+}
+
+/* ──────────────────────────────────────────────────────────
+   IMPACT SO FAR SECTION
+────────────────────────────────────────────────────────── */
+#impact {
+  padding: 90px;
+  background: var(--bg-light);
+}
+
+/* Top layout: image + outcomes */
+#impact > div:first-child {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-section);
+  margin-bottom: var(--gap-section);
+}
+
+/* Image */
+#impactImg img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: var(--card-rad);
+  box-shadow: var(--shadow-md);
+}
+
+/* Outcome checklist */
+#outcome ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  padding-left: 40px;
+}
+
+#outcome ul li {
+  position: relative;
+  padding-left: 20px;
+  font-size: var(--fs-body);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Check icon */
+#outcome ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-weight: 700;
+  font-size: var(--fs-small);
+  color: var(--primary);
+}
+
+/* ──────────────────────────────────────────────────────────
+   IMPACT METRIC CARDS
+────────────────────────────────────────────────────────── */
+#outcomeCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-md);
+}
+
+#outcomeCard > div {
+  background: #ffffff;
+  padding: 24px 20px;
+  border-radius: var(--card-rad);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#outcomeCard > div:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Metric heading */
+#outcomeCard h1 {
+  font-size: var(--fs-h2);
+  color: var(--primary-d);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* Metric text */
+#outcomeCard p {
+  font-size: var(--fs-body);
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* ──────────────────────────────────────────────────────────
+   RESPONSIVE BREAKPOINTS
+────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  #impact > div:first-child {
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+  }
+
+  #outcomeCard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  #outcomeCard {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────
+   IMPACT VISION & QUOTE SECTION
+────────────────────────────────────────────────────────── */
+#impVision {
+  padding: var(--pad-section);
+  background: #ffffff;
+  display: grid;
+  gap: var(--gap-section);
+}
+
+/* ===============================
+   LEFT: GOALS CARD
+================================ */
+#impVIsCard {
+  background: var(--bg-light);
+  padding: 28px 50px;
+  border-radius: var(--card-rad);
+  box-shadow: var(--shadow-sm);
+}
+
+#impVIsCard h2 {
+  font-size: var(--fs-h2);
+  margin-bottom: 20px;
+  color: var(--primary-d);
+}
+
+/* Goals list */
+.goals-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.goal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.goal-item i {
+  font-size: 0.95rem;
+  color: var(--primary);
+  margin-top: 3px;
+}
+
+.goal-item p {
+  font-size: var(--fs-body);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ===============================
+   RIGHT: QUOTE + STATEMENT + CTA
+================================ */
+#impNotes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  padding-right: 40px;
+}
+
+/* Quote card */
+#impQuote {
+  background: var(--bg-light);
+  padding: 24px 22px;
+  border-left: 4px solid var(--primary);
+  border-radius: var(--card-rad);
+  box-shadow: var(--shadow-sm);
+}
+
+#impQuote blockquote {
+  font-size: var(--fs-body);
+  font-style: italic;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* Impact statement */
+#impState {
+  background: #ffffff;
+  padding: 20px 22px;
+  border-radius: var(--card-rad);
+  box-shadow: var(--shadow-sm);
+}
+
+#impState p {
+  font-size: var(--fs-body);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* CTA buttons */
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-sm);
+}
+
+/* Outline button (matches system) */
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(46,125,50,0.22);
+}
+
+/* ──────────────────────────────────────────────────────────
+   RESPONSIVE
+────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  #impVision {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+
+
+   
+/* ──────────────────────────────────────────────────────────
+   TABLET & DESKTOP
+   ────────────────────────────────────────────────────────── */
+
+
+
+
+/* ──────────────────────────────────────────────────────────
+   TABLET & DESKTOP
+   ────────────────────────────────────────────────────────── */
+
+@media (min-width: 768px) {
+  #impactCard {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  #impactHero {
+    padding-bottom: 120px;
+  }
+}
+
+
+
+   
+
+
+
+/* ──────────────────────────────────────────────────────────
+   FOOTER
+   ────────────────────────────────────────────────────────── */
+
+.site-footer {
+  background: #0f2a1c;
+  color: #e5e7eb;
+  padding-top: 64px;
+  font-size: var(--fs-body);
+}
+
+/* Container reuse */
+.site-footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Footer grid */
+.footer-grid {
+  display: grid;
+  gap: 40px;
+}
+
+/* Footer columns */
+.footer-column h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+/* ──────────────────────────────────────────
+   CONTACT COLUMN
+   ────────────────────────────────────────── */
+
+.contact-list {
+  list-style: none;
+  display: grid;
+  gap: 16px;
+}
+
+.contact-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.contact-list i {
+  color: var(--primary);
+  font-size: 0.95rem;
+  margin-top: 3px;
+}
+
+.contact-list span {
+  display: block;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.contact-list a {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.contact-list a:hover {
+  text-decoration: underline;
+}
+
+/* ──────────────────────────────────────────
+   QUICK LINKS
+   ────────────────────────────────────────── */
+
+.footer-links {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.footer-links a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+/* ──────────────────────────────────────────
+   SOCIAL ICONS
+   ────────────────────────────────────────── */
+
+.social-icons {
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.social-icons a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.social-icons a:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* ──────────────────────────────────────────
+   FOOTER BOTTOM
+   ────────────────────────────────────────── */
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 48px;
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .site-footer {
+    padding-top: 80px;
+  }
+
+  .footer-bottom {
+    padding: 24px 0;
+  }
+}

@@ -289,11 +289,13 @@ main {
 #hero {
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  min-height: 100svh;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
 }
+
 
 /* ───────── BACKGROUND SLIDER ───────── */
 
@@ -308,9 +310,15 @@ main {
   inset: 0;
   background-size: cover;
   background-position: center;
+
   opacity: 0;
   animation: fadeSlides 20s infinite;
+
+  will-change: opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
+
 
 .hero-bg .slide:nth-child(1) { animation-delay: 0s; }
 .hero-bg .slide:nth-child(2) { animation-delay: 5s; }
@@ -318,9 +326,23 @@ main {
 .hero-bg .slide:nth-child(4) { animation-delay: 15s; }
 
 @keyframes fadeSlides {
-  0%, 35%, 100% { opacity: 0; }
-  10%, 25% { opacity: 1; }
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  25% { opacity: 1; }
+  30% { opacity: 0; }
+  100% { opacity: 0; }
 }
+
+.hero-bg .slide:first-child {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .hero-bg .slide {
+    animation-duration: 16s;
+  }
+}
+
 
 /* Gradient overlay */
 .hero-bg::after {

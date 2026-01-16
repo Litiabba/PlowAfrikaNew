@@ -448,13 +448,6 @@ main {
   }
 }
 
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .hero-bg .slide {
-    animation: none;
-    opacity: 1;
-  }
-}
 
 
 /* ─────────────────────────────────────────────

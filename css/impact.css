@@ -238,7 +238,7 @@ body {
   text-align: center;
   color: #ffffff;
 
-  background-image: url("../images/wisconsin.jpg"); /* UPDATE PATH */
+  background-image: url("../images/Seedling.JPG"); /* UPDATE PATH */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -250,6 +250,7 @@ body {
 #impactHero::after {
   content: "";
   position: absolute;
+  aspect-ratio: 4 / 3;
   inset: 0;
   background: linear-gradient(
     to top,
@@ -336,156 +337,332 @@ body {
    TABLET & DESKTOP
    ────────────────────────────────────────────────────────── */
 
-#stats{
+/* ──────────────────────────────────────────────────────────
+   IMPACT STATS SECTION - Improved Spacing & Padding
+────────────────────────────────────────────────────────── */
+#stats {
   background-color: #07381b;
   width: 100%;
-  justify-items: center;
+  padding: 80px 20px; /* Added vertical padding for breathing room, horizontal for mobile */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  text-align: center;
+  overflow: hidden;
 }
 
-#stats h2{
+#stats h2 {
   color: #fff;
+  font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
+  font-weight: 700;
+  margin-bottom: 40px; /* Increased space below title */
+  letter-spacing: 0.5px;
 }
-#ours{
+
+/* Stats container with improved flex wrapping and gaps */
+#ours {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
-  font-size: 11px;
+  align-items: stretch;
+  gap: 24px; /* Added consistent gap between items */
+  max-width: 1200px; /* Prevent stretching on large screens */
+  width: 100%;
+  font-size: 14px; /* Slightly larger base font for readability (was 11px) */
   color: #ffffff;
 }
 
+/* Individual stat items with centered content and refined padding */
 .statNum {
-  justify-items: center;
-  align-items: center;
-  padding: 40px;
-
-}
-
-.statNum h1{
-  color: #fff;
-  font-size: 30px;
-}
-
-/* ──────────────────────────────────────────────────────────
-   IMPACT SO FAR SECTION
-────────────────────────────────────────────────────────── */
-#impact {
-  padding: 90px;
-  background: var(--bg-light);
-}
-
-/* Top layout: image + outcomes */
-#impact > div:first-child {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--gap-section);
-  margin-bottom: var(--gap-section);
-}
-
-/* Image */
-#impactImg img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  max-height: 380px;
-  object-fit: cover;
-  border-radius: var(--card-rad);
-  box-shadow: var(--shadow-md);
-}
-
-/* Outcome checklist */
-#outcome ul {
-  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--gap-sm);
-  padding-left: 40px;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 24px; /* Balanced padding: more vertical for height, horizontal for width */
+  min-width: 200px; /* Ensure minimum width to prevent squishing */
+  flex: 1; /* Allow equal growth */
+  border-radius: 12px; /* Soft corners for modern feel */
+  background: rgba(255, 255, 255, 0.1); /* Subtle overlay for depth */
+  transition: transform 0.3s ease; /* Smooth hover lift */
 }
 
-#outcome ul li {
-  position: relative;
-  padding-left: 20px;
-  font-size: var(--fs-body);
-  color: var(--text);
-  line-height: 1.6;
+.statNum:hover {
+  transform: translateY(-4px); /* Subtle interaction */
 }
 
-/* Check icon */
-#outcome ul li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: 2px;
-  font-weight: 700;
-  font-size: var(--fs-small);
-  color: var(--primary);
+.statNum h1 {
+  color: #fff;
+  font-size: clamp(2rem, 6vw, 3.5rem); /* Responsive scaling */
+  font-weight: 800;
+  margin-bottom: 12px; /* Space between number and text */
+  line-height: 1;
 }
 
-/* ──────────────────────────────────────────────────────────
-   IMPACT METRIC CARDS
-────────────────────────────────────────────────────────── */
-#outcomeCard {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--gap-md);
-}
-
-#outcomeCard > div {
-  background: #ffffff;
-  padding: 24px 20px;
-  border-radius: var(--card-rad);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-#outcomeCard > div:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-
-/* Metric heading */
-#outcomeCard h1 {
-  font-size: var(--fs-h2);
-  color: var(--primary-d);
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-/* Metric text */
-#outcomeCard p {
-  font-size: var(--fs-body);
-  color: var(--text-light);
-  line-height: 1.6;
+.statNum p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #e0e0e0; /* Softer white for text */
 }
 
 /* ──────────────────────────────────────────────────────────
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE ADJUSTMENTS
 ────────────────────────────────────────────────────────── */
 @media (min-width: 768px) {
-  #impact > div:first-child {
-    grid-template-columns: 1.1fr 1fr;
-    align-items: center;
+  #stats {
+    padding: 120px 40px; /* More padding on larger screens */
   }
 
-  #outcomeCard {
-    grid-template-columns: repeat(2, 1fr);
+  #ours {
+    gap: 32px; /* Larger gaps for desktop */
+  }
+
+  .statNum {
+    padding: 48px 32px; /* Increased padding for premium feel */
   }
 }
 
 @media (min-width: 1024px) {
-  #outcomeCard {
-    grid-template-columns: repeat(4, 1fr);
+  #stats {
+    padding: 140px 60px;
   }
 }
 
-
 /* ──────────────────────────────────────────────────────────
-   IMPACT VISION & QUOTE SECTION
+   IMPACT SO FAR - Modern Animated Card Layout 2025
 ────────────────────────────────────────────────────────── */
-#impVision {
-  padding: var(--pad-section);
-  background: #ffffff;
+#impact {
+  padding: clamp(60px, 8vw, 120px) clamp(20px, 6vw, 90px);
+  background: linear-gradient(145deg, #f8fafc 0%, #e0f7fa 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Very subtle moving background */
+#impact::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(circle at 20% 30%, rgba(34,197,94,0.07) 0%, transparent 45%),
+              radial-gradient(circle at 80% 70%, rgba(59,130,246,0.05) 0%, transparent 45%);
+  animation: slowDrift 22s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes slowDrift {
+  0%   { transform: translate(-4%, -6%) rotate(-1deg) scale(1.02); }
+  100% { transform: translate(6%, 4%)  rotate(1deg)  scale(1.04); }
+}
+
+/* Container */
+#top,
+#outcomeCard {
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Top part - Image + Outcomes as horizontal flow cards */
+#top {
   display: grid;
-  gap: var(--gap-section);
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  #top {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: stretch;
+  }
+}
+
+/* ──────── Modern Image Card ──────── */
+#impactImg {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px -15px rgba(0,0,0,0.15);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: white;
+}
+
+#impactImg:hover {
+  transform: translateY(-16px);
+  box-shadow: 0 40px 90px -25px rgba(34,197,94,0.28);
+}
+
+#impactImg img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#impactImg:hover img {
+  transform: scale(1.09);
+}
+
+/* Overlay title on image */
+#impactImg::after {
+  content: "Real Change, Real Farmers";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem 2rem 1.8rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 60%, transparent 40%);
+  color: rgb(255, 255, 255);
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  transform: translateY(30%);
+  transition: all 0.5s ease;
+  opacity: 0.9;
+}
+
+#impactImg:hover::after {
+  transform: translateY(0);
+}
+
+/* ──────── Outcomes as flowing horizontal cards ──────── */
+#outcome {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+#outcome ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: contents;
+}
+
+#outcome ul li {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 1.4rem 1.8rem 1.4rem 5.2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.5);
+  position: relative;
+  font-size: 1.08rem;
+  line-height: 1.58;
+  color: #1e293b;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateX(0);
+}
+
+#outcome ul li:nth-child(odd)  { transform: translateX(-8px); }
+#outcome ul li:nth-child(even) { transform: translateX(8px); }
+
+#outcome ul li:hover {
+  transform: translateX(0) translateY(-8px) !important;
+  box-shadow: 0 20px 50px rgba(34,197,94,0.22);
+}
+
+#outcome ul li::before {
+  content: "→";
+  position: absolute;
+  left: 1.8rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+  font-size: 2.1rem;
+  font-weight: bold;
+  color: #22c55e;
+  opacity: 0.7;
+  transition: all 0.4s ease;
+}
+
+#outcome ul li:hover::before {
+  transform: translateY(-50%) rotate(0deg);
+  opacity: 1;
+  color: #16a34a;
+}
+
+/* ──────── Impact Metrics - Big Animated Cards ──────── */
+#outcomeCard {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.8rem;
+}
+
+@media (min-width: 640px)  { #outcomeCard { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { #outcomeCard { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
+
+#outcomeCard > div {
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 22px;
+  padding: 2.4rem 1.8rem;
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.09);
+  text-align: center;
+  transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+#outcomeCard > div:hover {
+  transform: translateY(-16px) scale(1.03);
+  box-shadow: 0 35px 80px -20px rgba(34,197,94,0.28);
+}
+
+#outcomeCard > div::before {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  background: linear-gradient(45deg, transparent, rgba(34,197,94,0.12), transparent);
+  transition: all 0.7s ease;
+  transform: translateX(-100%);
+}
+
+#outcomeCard > div:hover::before {
+  transform: translateX(100%);
+}
+
+#outcomeCard h1 {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1;
+  margin: 0 0 0.9rem 0;
+  background: linear-gradient(90deg, #15803d, #22c55e, #3b82f6, #22c55e);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 6s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+#outcomeCard p {
+  font-size: 1.05rem;
+  color: #334155;
+  line-height: 1.55;
+  margin: 0;
+  font-weight: 500;
+}
+
+
+/* ─────────────────────────────────────────────
+   IMPACT VISION & QUOTE + CTA – SENIOR REFINE
+───────────────────────────────────────────── */
+
+/* Section container */
+#impVision {
+  padding: clamp(60px, 8vw, 120px) clamp(20px, 6vw, 90px);
+  background-color: #ffffff;
+  display: grid;
+  gap: clamp(40px, 5vw, 80px);
 }
 
 /* ===============================
@@ -493,23 +670,27 @@ body {
 ================================ */
 #impVIsCard {
   background: var(--bg-light);
-  padding: 28px 50px;
+  padding: clamp(24px, 3vw, 48px);
   border-radius: var(--card-rad);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.5vw, 32px);
 }
 
 #impVIsCard h2 {
-  font-size: var(--fs-h2);
-  margin-bottom: 20px;
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  margin-bottom: clamp(16px, 2vw, 24px);
   color: var(--primary-d);
 }
 
 /* Goals list */
 .goals-list {
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-sm);
+  display: grid;
+  gap: clamp(12px, 2vw, 20px);
+  padding: 0;
+  margin: 0;
 }
 
 .goal-item {
@@ -519,15 +700,18 @@ body {
 }
 
 .goal-item i {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: var(--primary);
   margin-top: 3px;
+  min-width: 24px;
 }
 
+/* Goal text */
 .goal-item p {
   font-size: var(--fs-body);
   color: var(--text);
   line-height: 1.6;
+  margin: 0;
 }
 
 /* ===============================
@@ -536,17 +720,17 @@ body {
 #impNotes {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-md);
-  padding-right: 40px;
+  gap: clamp(24px, 3vw, 36px);
 }
 
 /* Quote card */
 #impQuote {
   background: var(--bg-light);
-  padding: 24px 22px;
+  padding: clamp(20px, 3vw, 32px);
   border-left: 4px solid var(--primary);
   border-radius: var(--card-rad);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #impQuote blockquote {
@@ -554,76 +738,70 @@ body {
   font-style: italic;
   color: var(--text-light);
   line-height: 1.7;
+  margin: 0;
 }
 
-/* Impact statement */
+/* Impact statement card */
 #impState {
   background: #ffffff;
-  padding: 20px 22px;
+  padding: clamp(18px, 2.5vw, 28px);
   border-radius: var(--card-rad);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
 }
 
 #impState p {
   font-size: var(--fs-body);
   color: var(--text);
   line-height: 1.6;
+  margin: 0;
 }
 
 /* CTA buttons */
 .hero-cta-group {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap-sm);
+  gap: clamp(12px, 2vw, 20px);
 }
 
-/* Outline button (matches system) */
+/* Outline button */
 .btn-outline {
   background: transparent;
   border: 1px solid var(--primary);
   color: var(--primary);
+  transition: all 0.3s ease;
 }
 
 .btn-outline:hover {
   background: var(--primary);
   color: #ffffff;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(46,125,50,0.22);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(46,125,50,0.22);
 }
 
-/* ──────────────────────────────────────────────────────────
-   RESPONSIVE
-────────────────────────────────────────────────────────── */
+/* ─────────────────────────────────────────────
+   RESPONSIVE LAYOUT
+───────────────────────────────────────────── */
+
+/* Tablet */
 @media (min-width: 768px) {
   #impVision {
     grid-template-columns: 1fr 1fr;
     align-items: start;
   }
+
+  #impNotes {
+    padding-right: 0;
+  }
 }
 
-
-
-   
-/* ──────────────────────────────────────────────────────────
-   TABLET & DESKTOP
-   ────────────────────────────────────────────────────────── */
-
-
-
-
-/* ──────────────────────────────────────────────────────────
-   TABLET & DESKTOP
-   ────────────────────────────────────────────────────────── */
-
-@media (min-width: 768px) {
-  #impactCard {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 900px;
-    margin-inline: auto;
+/* Desktop */
+@media (min-width: 1024px) {
+  #impVision {
+    gap: clamp(50px, 5vw, 100px);
   }
 
-  #impactHero {
-    padding-bottom: 120px;
+  #impVIsCard {
+    padding: clamp(32px, 3vw, 56px);
   }
 }
 

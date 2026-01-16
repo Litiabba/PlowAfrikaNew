@@ -4,10 +4,13 @@
    Adjusted for smaller fonts and reduced footer height
    ========================================================================== */
 
-/* ─────────────────────────────────────────────
-   GLOBAL RESET & VARIABLES
-────────────────────────────────────────────── */
-* {
+/* ==========================================================
+   GLOBAL RESET + SYSTEM
+========================================================== */
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,39 +18,82 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
   color: #1a1a1a;
   background: #ffffff;
+  overflow-x: hidden;
 }
+
+/* ==========================================================
+   ROOT VARIABLES
+========================================================== */
 
 :root {
-  --fs-body: 1rem; /* 15px */
-  --fs-link: 1rem;       /* 16px */
-  --gap-md: 24px;
-  --gap-sm: 16px;
-  --nav-height: 60px;
-  --btn-pad: 8px 16px;
-  --btn-rad: 8px;
   --primary: #2e7d32;
   --primary-d: #1b5e20;
+
   --text: #111827;
   --text-light: #4b5563;
-  --border: #e5e7eb;
-  --shadow-md: 0 6px 20px rgba(0,0,0,0.11);
+
+  --radius: 16px;
+
+  --shadow-sm: 0 4px 12px rgba(0,0,0,.08);
+  --shadow-md: 0 10px 30px rgba(0,0,0,.12);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,.18);
+
+  --transition: all .35s ease;
 }
 
-/* ─────────────────────────────────────────────
-   CONTAINER
-────────────────────────────────────────────── */
-.container {
+/* ==========================================================
+   GLOBAL RESPONSIVE MEDIA (CRITICAL FIX)
+========================================================== */
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+}
+
+/* Prevent flex/grid children overflow */
+.container,
+.story-container,
+.team-container,
+.flow-cards,
+.story-block,
+.hero-text,
+.hero-image,
+.story-img,
+.team-card {
+  min-width: 0;
+}
+
+/* ==========================================================
+   CORE LAYOUT HELPERS
+========================================================== */
+
+main {
   width: 100%;
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 16px;
+}
+
+.sec {
+  padding: clamp(48px, 10vw, 80px) 16px;
+}
+
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
 }
 
 /* ─────────────────────────────────────────────
@@ -254,7 +300,7 @@ body {
       rgba(255, 255, 255, 0.00) 80%     /* fully transparent near top */
     ),
     /* Your background image */
-    url('../images/paddy.jpg');   /* ← replace with your real image */
+    url('../images/onboard.JPG');   /* ← replace with your real image */
 
   background-size: cover;
   background-position: center 60%;   /* slightly higher focus if people are in lower part */
@@ -291,7 +337,7 @@ body {
 }
 
 .solution-highlight {
-  background: rgb(138, 224, 164);
+  background: rgb(161, 231, 182);
   backdrop-filter: blur(8px);     /* modern glass effect – great on mobile/desktop */
   border-radius: var(--card-rad);
   padding: 1rem 0.4rem;
@@ -450,7 +496,7 @@ body {
    ========================================================================== */
 
 #solPreview {
-  padding: 0px 50px;
+  padding: clamp(60px, 8vw, 120px) clamp(20px, 6vw, 90px);
   display: block;
   gap: var(--gap-section);
   background: var(--bg-light);
@@ -572,12 +618,8 @@ body {
    ────────────────────────────────────────────────────────── */
 
 #teaser {
-  padding: opx 40px;
+  padding: clamp(60px, 8vw, 120px) clamp(20px, 6vw, 90px);
   text-align: center;
-  background-image: url(../images/wisconsin.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   display: grid;
   gap: var(--gap-md);
 }
